@@ -1,5 +1,6 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
+from .models import Choice, Room
 
 
 def home(request):
@@ -14,7 +15,10 @@ def create(request):
     return HttpResponse("Create.")
 
 def vote(request, room_id):
-    return HttpResponse("You're looking at voting room %s." % room_id)
+    question = get_object_or_404(Room, room_id=room_id).question
+    choices = get_object_or_404(Choice, question=question)
+    return render(request, 'polls/detail.html', {'choice': choices})
+    #return HttpResponse("You're looking at voting room %s." % room_id)
 
 def results(request, room_id):
     return HttpResponse("You're looking at results room %s." % room_id)
