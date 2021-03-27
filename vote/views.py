@@ -1,6 +1,9 @@
+import random
+import string
+from django.utils import timezone
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from vote.models import Room
+from vote.models import Room, Question
 
 def home(request):
     if request.method == "POST":
@@ -17,11 +20,16 @@ def home(request):
 
 def create(request):
     #return render(request, "home.html", {})
-    room_id = ''.join(random.choice(string.ascii_lowerase) for i in range(0, 6))
+    room_id = ''.join(random.choice(string.ascii_uppercase) for i in range(0, 6))
     query = Room.objects.filter(room_id=room_id)
     while query.count() >= 1:
         room_id = ''.join(random.choice(string.ascii_lowerase) for i in range(0, 6))
         query = Room.objects.filter(room_id=room_id)
+    question = Question(question_text="dummy", pub_date=timezone.now())
+    question.save()
+    room = Room(question=question, room_id=room_id, room_name="dummy")
+    room.save()
+    print(room_id)
     return HttpResponse("Create.")
 
 def vote(request, room_id):
