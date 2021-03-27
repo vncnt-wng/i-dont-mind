@@ -6,12 +6,14 @@
     <div class="class="h-100 row align-items-center">
       <h1>I Don't Mind</h1>
     </div>
+    <a href="{% url 'create' %}">
+      <button name="create_new" class="btn btn-primary">Create New Room</button>
+    </a>
     <div class="class="h-100 row align-items-center"> 
-      <form>
-        <button type="submit" name="create_new" class="btn btn-primary">Create New Room</button>
+      <form method="POST">{% csrf_token %}
         <div class="form-group">
           <label for="room_id">Room ID</label>
-          <input type="text" class="form-control" id="room_id" placeholder="Room ID">
+          <input type="text" class="form-control" name="room_id" placeholder="Room ID">
         </div>
         <button type="submit" name="join" class="btn btn-primary">Join Room</button>
       </form>
