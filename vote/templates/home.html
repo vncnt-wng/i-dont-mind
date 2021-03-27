@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block page_content %}
+<div class="h-100 row align-items-center">
+  <div class="col">
+    <div class="class="h-100 row align-items-center">
+      <h1>I Don't Mind</h1>
+    </div>
+    <div class="class="h-100 row align-items-center"> 
+      <form>
+        <button type="submit" name="create_new" class="btn btn-primary">Create New Room</button>
+        <div class="form-group">
+          <label for="room_id">Room ID</label>
+          <input type="text" class="form-control" id="room_id" placeholder="Room ID">
+        </div>
+        <button type="submit" name="join" class="btn btn-primary">Join Room</button>
+      </form>
+    </div> 
+  </div>
+</div>
+{% endblock %}
