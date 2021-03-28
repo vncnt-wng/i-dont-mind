@@ -1,15 +1,33 @@
 {% extends "index.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block page_content %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ formset.as_p }}
-    <input type="submit" value="Add choice">
-</form>
 
-<a href="{% url 'vote' room_id=room_id %}">
-    <button name="create_new" class="btn btn-primary">Create Vote Room</button>
-</a>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-6 pb-4">
+      <form method="post">
+        {% csrf_token %}
+        {{ formset | crispy }}
+        <button name="create_new" class="btn btn-info">Add Option</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-6 pb-4">  
+      <a href="{% url 'vote' room_id=room_id %}">
+        <button name="create_new" class="btn btn-info">Create Vote Room</button>
+      </a>
+    </div>
+  </div>
+</div>
+
+
 
 {% endblock %}

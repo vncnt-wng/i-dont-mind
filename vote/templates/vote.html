@@ -9,7 +9,7 @@
             <div class="radio">
                 {% for choice in choices %}
                 <label>
-                    <input type="radio" name="poll" value=choice>choice
+                    <input type="radio" name="{{ choice.choice_text }}" value=choice>{{ choice.choice_text }}
                 </label>&nbsp;
                 {% endfor %}
             </div>

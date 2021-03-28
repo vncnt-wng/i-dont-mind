@@ -69,6 +69,9 @@ def vote(request, room_id):
     question = get_object_or_404(Room, room_id=room_id).question
     choices = Choice.objects.filter(question=question)
 
+    if request.method == "POST":
+        room_id = request.POST.get("room_id", "")
+
     return render(request, 'vote.html', {
         'question': question,
         'choices' : choices

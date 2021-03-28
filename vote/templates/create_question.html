@@ -1,11 +1,23 @@
 {% extends "index.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block page_content %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-6 pb-4">
+      <form method="post">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button name="create_new" class="btn btn-info">Continue</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
 
 {% endblock %}
