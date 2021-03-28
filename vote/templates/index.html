@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "vote/style.css"%}">
   </head>
 
-  <body>
+  <body id="bg" style="background-image: url('{% static "img/img6.jpg" %}');">
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <a class="navbar-brand" href="/">I Don't Mind</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
         </ul>
       </div>
     </nav>
-    <div class="container">
+    <div>
       {% block page_content %}{% endblock %}
     </div>
   </body>
