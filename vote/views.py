@@ -35,12 +35,31 @@ def create(request):
 def vote(request, room_id):
     question = get_object_or_404(Room, room_id=room_id).question
     choices = Choice.objects.filter(question=question)
-    data = {
+
+    return render(request, 'vote.html', data={
         'question': question,
         'choices' : choices
-    }
-    return render(request, 'vote.html', data)
+    })
     #return HttpResponse("You're looking at voting room %s." % room_id)
 
+
+#def make_colours()
+
 def results(request, room_id):
-    return HttpResponse("You're looking at results room %s." % room_id)
+    question = get_object_or_404(Room, room_id=room_id).question
+    choices = Choice.objects.filter(question=question)
+    labels = []
+    votes = []
+    greatestChoice = choices[0]
+
+    for choice in choices:
+        labels.append(choice.choice_text)
+        votes.append(choice.votes)
+        if choice.votes > greatestChoice.votes:
+            greatestChoice = choice
+
+    return render(request, 'results.html', {
+        'labels' : labels,
+        'votes' : votes,
+        'winner' : greatestChoice
+    })
