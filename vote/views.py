@@ -71,6 +71,11 @@ def vote(request, room_id):
 
     if request.method == "POST":
         room_id = request.POST.get("room_id", "")
+        choice = request.POST.get("choice", "")
+        chosen = choices.filter(choice_text=choice)[0]
+        chosen.votes += 1
+        chosen.save()
+        return redirect("results", room_id)
 
     return render(request, 'vote.html', {
         'question': question,

@@ -9,7 +9,7 @@
             <div class="radio">
                 {% for choice in choices %}
                 <label>
-                    <input type="radio" name="{{ choice.choice_text }}" value=choice>{{ choice.choice_text }}
+                    <input type="radio" name="choice" value="{{ choice.choice_text }}">{{ choice.choice_text }}
                 </label>&nbsp;
                 {% endfor %}
             </div>
@@ -19,11 +19,11 @@
 
         <hr />
 
-        <a href="{% url 'results' room_id=room_id %}">
+
         <button type="submit" class="btn btn-info">
             Submit
         </button>
-    </a>
+    
     </form>
 </ul>
 {% endblock %}
