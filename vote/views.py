@@ -71,7 +71,8 @@ def vote(request, room_id):
 
     return render(request, 'vote.html', {
         'question': question,
-        'choices' : choices
+        'choices' : choices,
+        'room_id' : room_id
     })
     #return HttpResponse("You're looking at voting room %s." % room_id)
 
