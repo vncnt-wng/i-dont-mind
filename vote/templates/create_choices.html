@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block page_content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ formset.as_p }}
+    <input type="submit" value="Add choice">
+</form>
+
+<a href="{% url 'vote' room_id=room_id %}">
+    <button name="create_new" class="btn btn-primary">Create Vote Room</button>
+</a>
+
+{% endblock %}
