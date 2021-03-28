@@ -1,0 +1,23 @@
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+    <form method="POST">{% csrf_token %}
+        <div class="form-group">
+            <div class="radio">
+                {% for choice in choices %}
+                <label>
+                    <input type="radio" name="poll" value=choice>choice
+                </label>&nbsp;
+                {% endfor %}
+            </div>
+        </div>
+
+        <input type="hidden" name="id" value="1">
+
+        <hr />
+
+        <button type="submit" class="btn btn-info">
+            Submit
+        </button>
+    </form>
+</ul>

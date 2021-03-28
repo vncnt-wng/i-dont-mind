@@ -3,7 +3,7 @@ import string
 from django.utils import timezone
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
-from vote.models import Room, Question, Choice
+from .models import Room, Question, Choice
 
 def home(request):
     if request.method == "POST":
@@ -23,7 +23,7 @@ def create(request):
     room_id = ''.join(random.choice(string.ascii_uppercase) for i in range(0, 6))
     query = Room.objects.filter(room_id=room_id)
     while query.count() >= 1:
-        room_id = ''.join(random.choice(string.ascii_lowerase) for i in range(0, 6))
+        room_id = ''.join(random.choice(string.ascii_lowercase) for i in range(0, 6))
         query = Room.objects.filter(room_id=room_id)
     question = Question(question_text="dummy", pub_date=timezone.now())
     question.save()
@@ -34,8 +34,12 @@ def create(request):
 
 def vote(request, room_id):
     question = get_object_or_404(Room, room_id=room_id).question
-    choices = get_object_or_404(Choice, question=question)
-    return render(request, 'polls/detail.html', {'choice': choices})
+    choices = Choice.objects.filter(question=question)
+    data = {
+        'question': question,
+        'choices' : choices
+    }
+    return render(request, 'vote.html', data)
     #return HttpResponse("You're looking at voting room %s." % room_id)
 
 def results(request, room_id):
