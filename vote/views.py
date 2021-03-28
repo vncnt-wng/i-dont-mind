@@ -44,3 +44,6 @@ def vote(request, room_id):
 
 def results(request, room_id):
     return HttpResponse("You're looking at results room %s." % room_id)
+
+def about(request):
+    return render(request, "about.html", {})

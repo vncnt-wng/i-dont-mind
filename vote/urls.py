@@ -7,4 +7,5 @@ urlpatterns = [
     path('create', views.create, name='create'),
     path('<str:room_id>/vote', views.vote, name='vote'),
     path('<str:room_id>/results', views.results, name='results'),
+    path('about', views.about, name='about')
 ]
